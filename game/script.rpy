@@ -102,8 +102,60 @@ menu:
         jump effects
 
 label effects:
-    filia "I can also do other effect!"
+    filia "I can also do other effects!"
 
+    show filia with vpunch
+    filia "Take that!"
+
+    filia "I can teleport too"
+
+    hide filia
+    with Dissolve(1.5)
+    show filia at floatleft
+    with Dissolve(1.5)
+
+    filia "See!"
+
+    filia "There are lots of neat visual effect you can do in Ren'Py!"
+    dwalin "But it's not just visual effects."
+    dwalin "The magic snake Python can run any code you like."
+    dwalin "By it's power, I can speak in Pig Latin!"
+
+label piglatin:
+    python:
+        def piglatin(txt: str) -> str:
+            vowels = ('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
+            outp = ""
+            for word in txt.split(" "):
+                consonants = ""
+                for char in word:
+                    if char in vowels:
+                        break
+                    consonants = consonants + char
+                suffix = "way " if not consonants else consonants + "ay "
+                outp = outp + word.lstrip(consonants) + suffix
+            return outp
+        say = renpy.input("What would you like me to say in Pig Latin?")
+        if (say):
+            say = piglatin(say)
+        else:
+            say = "I didn't catch that."
+
+    dwalin "[say]"
+    dwalin "Want to try again?"
+
+menu:
+    "Yeah!":
+        jump piglatin
+
+    "Nah":
+        jump end
+
+label end:
+    dwalin "It's not just speaking in tongues, the great serpent Python allows us to do all sorts of things."
+    dwalin "Inventory system, even JRPG type combat can be handled in Renpy"
+    dwalin "It's a very flexible system"
+    dwalin "Well, that's all we have for now"
 
     # This ends the game.
 
